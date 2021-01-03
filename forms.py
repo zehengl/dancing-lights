@@ -1,9 +1,8 @@
 from flask_wtf import FlaskForm
-from wtforms import SubmitField, TextField
+from wtforms import SubmitField, IntegerField
 from wtforms.validators import DataRequired
 
 
-class SomeForm(FlaskForm):
-    input1 = TextField("Input 1", validators=[DataRequired()])
-    input2 = TextField("Input 2", validators=[DataRequired()])
+class RainbowForm(FlaskForm):
+    input = IntegerField("Number of occurrences", validators=[DataRequired()])
     submit = SubmitField("Submit")
