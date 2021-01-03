@@ -38,12 +38,9 @@ def make_rainbow(times):
 
     for i in range(times * len(colors)):
 
-        for light in lights:
-
-            color = [v / 255 for v in colors[i % len(colors)]]
-            xy = rgb_to_xy(*color)
-            light.transitiontime = 5
-            light.xy = xy
+        color = [v / 255 for v in colors[i % len(colors)]]
+        xy = rgb_to_xy(*color)
+        b.set_light([l.light_id for l in lights], "xy", xy)
 
         time.sleep(0.5)
 
