@@ -69,8 +69,8 @@ It will install `pylint` and `black` to enable linting and auto-formatting.
 
 ## To-do
 
-- [] Display lyrics
-- [] Control lights based on lyrics
+- [ ] Display lyrics
+- [ ] Control lights based on lyrics
 
 <hr>
 
