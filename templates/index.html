@@ -37,7 +37,42 @@
       </div>
     </div>
     <div class="container">
-      {% include 'some_form.html' %}
+      <div id="carouselControls" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <a href="{{ url_for('listen', vid='rainbow') }}">
+              <img
+                class="d-block w-100"
+                src="{{ url_for('static', filename='rainbow.png') }}"
+              />
+              <div class="carousel-caption d-none d-md-block">
+                <strong><p>~Just Rainbow~</p></strong>
+              </div>
+            </a>
+          </div>
+          {% for vid, (mp3, img) in resources.items() %}
+            <div class="carousel-item">
+              <a href="{{ url_for('listen', vid=vid) }}">
+                <img
+                  class="d-block w-100"
+                  src="{{ url_for('static', filename=img) }}"
+                />
+                <div class="carousel-caption d-none d-md-block">
+                  <strong><p>{{ mp3 }}</p></strong>
+                </div>
+              </a>
+            </div>
+          {% endfor %}
+        </div>
+        <a class="carousel-control-prev" href="#carouselControls" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselControls" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
     </div>
   </div>
   <footer class="footer" style="padding: 1rem">

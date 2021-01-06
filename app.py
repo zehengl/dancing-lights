@@ -1,16 +1,16 @@
 import os
 import time
 from multiprocessing import Process
+from pathlib import Path
 
-from flask import Flask, render_template, request
+from flask import Flask, render_template
 from flask_bootstrap import Bootstrap
 from phue import Bridge
 from whitenoise import WhiteNoise
 
 
-from forms import RainbowForm
 from settings import ip_address
-from utils import rgb_to_xy
+from utils import rgb_to_xy, colors
 
 app = Flask(__name__)
 Bootstrap(app)
@@ -19,47 +19,51 @@ app.config["SECRET_KEY"] = os.getenv("SECRET_KEY", "SECRET_KEY")
 app.config["BOOTSTRAP_SERVE_LOCAL"] = True
 
 
+resources = dict(
+    [
+        (
+            p.name.split(" - ")[-1].rstrip(".mp3"),
+            (p.name, p.name.rstrip("mp3") + "webp"),
+        )
+        for p in Path("static").glob("*.mp3")
+    ]
+)
+
+
 b = Bridge(ip_address)
-
-lights = b.get_light_objects()
-
-colors = [
-    (148, 0, 211),
-    (75, 0, 130),
-    (0, 0, 255),
-    (0, 255, 0),
-    (255, 255, 0),
-    (255, 127, 0),
-    (255, 0, 0),
-]
 
 
 def make_rainbow(times):
+    lights = [l.light_id for l in b.get_light_objects()]
 
     for i in range(times * len(colors)):
-
         color = [v / 255 for v in colors[i % len(colors)]]
         xy = rgb_to_xy(*color)
-        b.set_light([l.light_id for l in lights], "xy", xy)
+        b.set_light(lights, "xy", xy)
 
         time.sleep(0.5)
 
     print("done looping")
 
 
-@app.route("/", methods=["get", "post"])
+@app.route("/", methods=["get"])
 def index():
-    form = RainbowForm(request.form)
+    return render_template("index.html", resources=resources)
 
-    if request.method == "POST":
+
+@app.route("/listen/<vid>", methods=["get"])
+def listen(vid):
+    if vid == "rainbow":
         rainbow_process = Process(
             target=make_rainbow,
-            args=(form.input.data,),
+            args=(10,),
             daemon=True,
         )
         rainbow_process.start()
+    else:
+        pass
 
-    return render_template("index.html", form=form)
+    return render_template("listen.html", vid=vid, resources=resources)
 
 
 if __name__ == "__main__":

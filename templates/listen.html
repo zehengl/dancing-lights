@@ -1,0 +1,36 @@
+{% extends "bootstrap/base.html" %}
+
+
+{% block head %}
+  {{ super() }}
+  <link
+    rel="shortcut icon"
+    href="{{ url_for('static', filename='favicon.png') }}"
+  />
+{% endblock %}
+
+{% block title %} {{ vid }} {% endblock %}
+
+{% block content %}
+  <div class="container">
+    {% if vid not in resources %}
+      <div class="card">
+        <img src="{{ url_for('static', filename='rainbow.png') }}" class="card-img-top">
+        <div class="card-body">
+          <p class="card-text">~Just Rainbow~</p>
+        </div>
+      </div>
+    {% else %}
+      <div class="card">
+        <img src="{{ url_for('static', filename=resources[vid][1]) }}" class="card-img-top">
+        <div class="card-body">
+          <p class="card-text">{{ resources[vid][0] }}</p>
+          <audio controls autoplay>
+            <source src="{{ url_for('static', filename=resources[vid][0]) }}" type="audio/mpeg">
+          </audio>
+          <p><a href="https://www.youtube.com/watch?v={{ vid }}">Watch on YouTube</a> 📺</p>
+        </div>
+      </div>
+    {% endif %}
+  </div>
+{% endblock %}

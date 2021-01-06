@@ -15,9 +15,21 @@ A Python application to use Philips Hue bridge/lights for wiggling and jiggling
 ## Usage
 
 1. create virtualenv
+
+   `python -m venv venv`
+
 2. activate virtualenv
+
+   `.\venv\Scripts\activate` on Windows or `source venv/bin/activate` on Linux
+
 3. update pip and setuptools
+
+   `python -m pip install -U pip setuptools`
+
 4. install deps
+
+   `pip install -r requirements.txt`
+
 5. create a `.env` file and store the Philips Hue bridge's ip address
 
    ```
@@ -25,31 +37,40 @@ A Python application to use Philips Hue bridge/lights for wiggling and jiggling
    IP="x.x.x.x"
    ```
 
-6. connect to the bridge (press the link button before running the script for the first time)
+6. connect to the bridge (**press the link button before running the script for the first time**)
+
+   `python connect.py`
+
 7. run the python app
+
+   `python app.py`
 
 Use `pip install -r requirements-dev.txt` for development.
 It will install `pylint` and `black` to enable linting and auto-formatting.
 
-## Example
+## Set Up Background Music for Lights
 
-### Windows
+1. install extra deps
 
-    python -m venv venv
-    .\venv\Scripts\activate
-    python -m pip install -U pip setuptools
-    pip install -r requirements.txt
-    python connect.py
-    python app.py
+   `pip install -r requirements-download.txt`
 
-### Linux
+2. create a `.videos` file and store all the YouTube video links
 
-    python -m venv venv
-    source venv/bin/activate
-    python -m pip install -U pip setuptools
-    pip install -r requirements.txt
-    python connect.py
-    python app.py
+   ```
+   # .videos
+   https://www.youtube.com/watch?v=9pkx51y4ppg
+   https://www.youtube.com/watch?v=_6HzoUcx3eo
+   ...
+   ```
+
+3. run the download script
+
+   `python download.py`
+
+## To-do
+
+- [] Display lyrics
+- [] Control lights based on lyrics
 
 <hr>
 
@@ -59,7 +80,14 @@ It will install `pylint` and `black` to enable linting and auto-formatting.
 
 - [Icon][1] by [Chanut is Industries][2]
 
+- [Rainbow image][3] from [https://wallpapers.gg/][4]
+
+- [YouTube][5] videos
+
 </sup>
 
 [1]: https://www.iconfinder.com/icons/7149745/dancing_dancer_party_lifestyle_happiness_entertainment_recreation_icon
 [2]: https://www.iconfinder.com/Chanut-is
+[3]: https://wallpapers.gg/digital-rainbow-background-6k/
+[4]: https://wallpapers.gg/
+[5]: https://www.youtube.com/
