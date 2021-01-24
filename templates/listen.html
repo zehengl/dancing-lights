@@ -24,7 +24,9 @@
       <div class="card">
         <img src="{{ url_for('static', filename=resources[vid][1]) }}" class="card-img-top">
         <div class="card-body">
-          <p class="card-text">{{ resources[vid][0] }}</p>
+          <p class="card-text">
+            <strong>{{ resources[vid][0].strip(' - ' + vid +'.mp3') }}</strong>
+          </p>
           <audio controls autoplay>
             <source src="{{ url_for('static', filename=resources[vid][0]) }}" type="audio/mpeg">
           </audio>
@@ -36,7 +38,7 @@
           </p>
           <div class="collapse" id="collapseLyrics">
             {% for seg in resources[vid][2]%}
-              <p>{{ seg[-1] }}</p>
+              <p class="text-center">{{ seg[-1] }}</p>
             {% endfor %}
           </div>
         </div>
