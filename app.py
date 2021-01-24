@@ -1,3 +1,4 @@
+import json
 import os
 import time
 from multiprocessing import Process
@@ -19,18 +20,45 @@ app.config["SECRET_KEY"] = os.getenv("SECRET_KEY", "SECRET_KEY")
 app.config["BOOTSTRAP_SERVE_LOCAL"] = True
 
 
-resources = dict(
-    [
-        (
-            p.name.split(" - ")[-1].rstrip(".mp3"),
-            (p.name, p.name.rstrip("mp3") + "webp"),
+def get_lyrics(path):
+    try:
+        cc = json.loads(open(path).read())
+    except:
+        return []
+    results = []
+    for evt in cc.get("events", []):
+        results.append(
+            (
+                evt.get("tStartMs", 0) / 1000.0,
+                evt.get("dDurationMs", 0) / 1000.0,
+                "".join([seg.get("utf8", "") for seg in evt.get("segs", [])]),
+            )
         )
-        for p in Path("static").glob("*.mp3")
-    ]
-)
+    return [r for r in results if r[-1].strip()]
 
 
-b = Bridge(ip_address)
+def get_id(path):
+    return path.name.split(" - ")[-1].rstrip(".mp3")
+
+
+def get_image(path):
+    return path.name.rstrip("mp3") + "webp"
+
+
+def get_mp3(path):
+    return path.name
+
+
+resources = [
+    (
+        get_id(p),
+        (get_mp3(p), get_image(p), get_lyrics(p.parent / f"{get_id(p)}.json")),
+    )
+    for p in Path("static").glob("*.mp3")
+]
+
+
+# b = Bridge(ip_address)
 
 
 def make_rainbow(times):
@@ -48,7 +76,10 @@ def make_rainbow(times):
 
 @app.route("/", methods=["get"])
 def index():
-    return render_template("index.html", resources=resources)
+    return render_template(
+        "index.html",
+        resources=dict([(vid, (mp3, image)) for vid, (mp3, image, _) in resources]),
+    )
 
 
 @app.route("/listen/<vid>", methods=["get"])
@@ -63,7 +94,7 @@ def listen(vid):
     else:
         pass
 
-    return render_template("listen.html", vid=vid, resources=resources)
+    return render_template("listen.html", vid=vid, resources=dict(resources))
 
 
 if __name__ == "__main__":

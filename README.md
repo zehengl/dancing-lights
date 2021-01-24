@@ -67,9 +67,11 @@ It will install `pylint` and `black` to enable linting and auto-formatting.
 
    `python download.py`
 
+   > It picks the last available cc from YouTube. So make sure that one is English.
+
 ## To-do
 
-- [ ] Display lyrics
+- [x] Display lyrics
 - [ ] Control lights based on lyrics
 
 <hr>

@@ -29,6 +29,16 @@
             <source src="{{ url_for('static', filename=resources[vid][0]) }}" type="audio/mpeg">
           </audio>
           <p><a href="https://www.youtube.com/watch?v={{ vid }}">Watch on YouTube</a> 📺</p>
+          <p>
+            <button class="btn btn-success" type="button" data-toggle="collapse" data-target="#collapseLyrics" aria-expanded="false" aria-controls="collapseLyrics">
+              Lyrics
+            </button>
+          </p>
+          <div class="collapse" id="collapseLyrics">
+            {% for seg in resources[vid][2]%}
+              <p>{{ seg[-1] }}</p>
+            {% endfor %}
+          </div>
         </div>
       </div>
     {% endif %}
