@@ -43,6 +43,11 @@ if __name__ == "__main__":
         with open(".videos") as f:
             videos = [v.strip() for v in f.readlines()]
 
-        get_resources(videos)
+        get_resources([v for v in videos if not v.startswith("#")])
     except:
         print("Something went wrong.")
+    else:
+        with open(".videos", "w") as f:
+            f.writelines(
+                [f"{v}\n" if v.startswith("#") else f"# {v}\n" for v in videos]
+            )
