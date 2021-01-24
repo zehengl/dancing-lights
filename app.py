@@ -6,7 +6,7 @@ from pathlib import Path
 
 from flask import Flask, render_template
 from flask_bootstrap import Bootstrap
-from phue import Bridge
+from phue import Bridge, PhueRegistrationException
 from whitenoise import WhiteNoise
 
 
@@ -57,11 +57,22 @@ resources = [
     for p in Path("static").glob("*.mp3")
 ]
 
+if ip_address:
+    try:
+        b = Bridge(ip_address)
+    except PhueRegistrationException:
+        b = None
+        print("Your Philips Hue bridge is not set up properly.")
+else:
+    b = None
+    print("No setting for your Philips Hue bridge")
 
-# b = Bridge(ip_address)
 
+def make_rainbow(b, times):
+    if not b:
+        print("nothing happens")
+        return
 
-def make_rainbow(times):
     lights = [l.light_id for l in b.get_light_objects()]
 
     for i in range(times * len(colors)):
@@ -87,7 +98,7 @@ def listen(vid):
     if vid == "rainbow":
         rainbow_process = Process(
             target=make_rainbow,
-            args=(10,),
+            args=(b, 10),
             daemon=True,
         )
         rainbow_process.start()

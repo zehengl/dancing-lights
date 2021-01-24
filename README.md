@@ -50,11 +50,7 @@ It will install `pylint` and `black` to enable linting and auto-formatting.
 
 ## Set Up Background Music for Lights
 
-1. install extra deps
-
-   `pip install -r requirements-download.txt`
-
-2. create a `.videos` file and store all the YouTube video links
+1. create a `.videos` file and store all the YouTube video links
 
    ```
    # .videos
@@ -63,7 +59,7 @@ It will install `pylint` and `black` to enable linting and auto-formatting.
    ...
    ```
 
-3. run the download script
+2. run the download script
 
    `python download.py`
 
@@ -73,6 +69,7 @@ It will install `pylint` and `black` to enable linting and auto-formatting.
 
 - [x] Display lyrics
 - [ ] Control lights based on lyrics
+- [ ] Configure Heroku buildpack for FFmpeg
 
 <hr>
 
