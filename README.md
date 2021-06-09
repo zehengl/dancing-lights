@@ -10,7 +10,7 @@ A Python application to use Philips Hue bridge/lights for wiggling and jiggling
 
 ## Environment
 
-- Python 3.7.9
+- Python 3.9
 
 ## Usage
 
