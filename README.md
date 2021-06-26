@@ -71,10 +71,6 @@ It will install `pylint` and `black` to enable linting and auto-formatting.
 - [ ] Control lights based on lyrics
 - [ ] Configure Heroku buildpack for FFmpeg
 
-<hr>
-
-<sup>
-
 ## Credits
 
 - [Icon][1] by [Chanut is Industries][2]
@@ -82,8 +78,6 @@ It will install `pylint` and `black` to enable linting and auto-formatting.
 - [Rainbow image][3] from [https://wallpapers.gg/][4]
 
 - [YouTube][5] videos
-
-</sup>
 
 [1]: https://www.iconfinder.com/icons/7149745/dancing_dancer_party_lifestyle_happiness_entertainment_recreation_icon
 [2]: https://www.iconfinder.com/Chanut-is
