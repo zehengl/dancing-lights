@@ -1,85 +1,96 @@
 {% extends "bootstrap/base.html" %}
 
-
+<!-- head -->
 {% block head %}
-  {{ super() }}
-  <link
-    rel="shortcut icon"
-    href="{{ url_for('static', filename='favicon.png') }}"
-  />
+<!-- super() -->
+{{ super() }}
+<link
+  rel="shortcut icon"
+  href="{{ url_for('static', filename='favicon.png') }}"
+/>
 {% endblock %}
 
-
+<!-- title -->
 {% block title %} dancing-lights {% endblock %}
 
+<!-- content -->
 {% block content %}
-  <div style="display: flex; min-height:100vh; flex-direction:column; flex: 1">
-    <div class="container">
-      <div class="jumbotron">
-        <h1 class="display-4">
-          <span>
-            <img
-              src="{{ url_for('static', filename='favicon.png') }}"
-              width="64"
-              height="64"
-            />
-          </span>
-          dancing-lights
-        </h1>
-        <p class="lead">
-          A Python application to use Philips Hue bridge/lights for wiggling and jiggling
-        </p>
-        <hr class="my-4" />
-        <p>
-          Check out the source code at
-          <a href="https://github.com/zehengl/dancing-lights">dancing-lights</a>
-        </p>
-      </div>
-    </div>
-    <div class="container">
-      <div id="carouselControls" class="carousel slide" data-ride="carousel">
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            <a href="{{ url_for('listen', vid='rainbow') }}">
-              <img
-                class="d-block w-100"
-                src="{{ url_for('static', filename='rainbow.png') }}"
-              />
-              <div class="carousel-caption d-none d-md-block">
-                <strong><p>~Just Rainbow~</p></strong>
-              </div>
-            </a>
-          </div>
-          {% for vid, (mp3, img) in resources.items() %}
-            <div class="carousel-item">
-              <a href="{{ url_for('listen', vid=vid) }}">
-                <img
-                  class="d-block w-100"
-                  src="{{ url_for('static', filename=img) }}"
-                />
-                <div class="carousel-caption d-none d-md-block">
-                  <strong><p>{{ mp3 }}</p></strong>
-                </div>
-              </a>
-            </div>
-          {% endfor %}
-        </div>
-        <a class="carousel-control-prev" href="#carouselControls" role="button" data-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="sr-only">Previous</span>
-        </a>
-        <a class="carousel-control-next" href="#carouselControls" role="button" data-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="sr-only">Next</span>
-        </a>
-      </div>
+<div style="display: flex; min-height: 100vh; flex-direction: column; flex: 1">
+  <div class="container">
+    <div class="jumbotron">
+      <h1 class="display-4">
+        <span>
+          <img
+            src="{{ url_for('static', filename='favicon.png') }}"
+            width="64"
+            height="64"
+          />
+        </span>
+        dancing-lights
+      </h1>
+      <p class="lead">
+        A Python application to use Philips Hue bridge/lights for wiggling and
+        jiggling
+      </p>
+      <hr class="my-4" />
+      <p>
+        Check out the source code at
+        <a href="https://github.com/zehengl/dancing-lights">dancing-lights</a>
+      </p>
     </div>
   </div>
-  <footer class="footer" style="padding: 1rem">
-    <div class="container">
-      <span class="text-muted">
-        &copy; Copyright 2021 by Zeheng Li
-      </span>
+  <div class="container">
+    <div id="carouselControls" class="carousel slide" data-ride="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <a href="{{ url_for('listen', vid='rainbow') }}">
+            <img
+              class="d-block w-100"
+              src="{{ url_for('static', filename='rainbow.png') }}"
+            />
+            <div class="carousel-caption d-none d-md-block">
+              <strong><p>~Just Rainbow~</p></strong>
+            </div>
+          </a>
+        </div>
+        {% for vid, (mp3, img) in resources.items() %}
+        <div class="carousel-item">
+          <a href="{{ url_for('listen', vid=vid) }}">
+            <img
+              class="d-block w-100"
+              src="{{ url_for('static', filename=img) }}"
+            />
+            <div class="carousel-caption d-none d-md-block">
+              <strong><p>{{ mp3 }}</p></strong>
+            </div>
+          </a>
+        </div>
+        {% endfor %}
+      </div>
+      <a
+        class="carousel-control-prev"
+        href="#carouselControls"
+        role="button"
+        data-slide="prev"
+      >
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a
+        class="carousel-control-next"
+        href="#carouselControls"
+        role="button"
+        data-slide="next"
+      >
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
     </div>
-  </footer>
+  </div>
+</div>
+<footer class="footer" style="padding: 1rem">
+  <div class="container">
+    <span class="text-muted"> &copy; Copyright 2021 by Zeheng Li </span>
+  </div>
+</footer>
 {% endblock %}
