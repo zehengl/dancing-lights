@@ -6,4 +6,4 @@ phue==1.1
 python-dotenv==0.19.2
 requests==2.26.0
 whitenoise==5.3.0
-youtube-dl==2021.6.6
+youtube-dl==2021.12.17
