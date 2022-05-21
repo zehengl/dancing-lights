@@ -16,11 +16,11 @@ A Python application to use Philips Hue bridge/lights for wiggling and jiggling
 
 1. create virtualenv
 
-   `python -m venv venv`
+   `python -m venv .venv`
 
 2. activate virtualenv
 
-   `.\venv\Scripts\activate` on Windows or `source venv/bin/activate` on Linux
+   `.\.venv\Scripts\activate` on Windows or `source .venv/bin/activate` on Linux
 
 3. update pip and setuptools
 
