@@ -1,5 +1,5 @@
 <div align="center">
-    <img src="https://cdn3.iconfinder.com/data/icons/party-fill-recreation-story/512/Dancing-512.png" alt="logo" height="196">
+    <img src="https://cdn3.iconfinder.com/data/icons/party-fill-recreation-story/512/Dancing-512.png" alt="logo" height="128">
 </div>
 
 # dancing-lights
