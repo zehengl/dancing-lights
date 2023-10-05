@@ -45,8 +45,7 @@ A Python application to use Philips Hue bridge/lights for wiggling and jiggling
 
    `python app.py`
 
-Use `pip install -r requirements-dev.txt` for development.
-It will install `pylint` and `black` to enable linting and auto-formatting.
+> Use `pip install -r requirements-dev.txt` for development.
 
 ## Set Up Background Music for Lights
 
