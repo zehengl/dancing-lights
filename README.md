@@ -1,7 +1,3 @@
-<div align="center">
-    <img src="https://cdn3.iconfinder.com/data/icons/party-fill-recreation-story/512/Dancing-512.png" alt="logo" height="128">
-</div>
-
 # dancing-lights
 
 ![coding_style](https://img.shields.io/badge/code%20style-black-000000.svg)
@@ -72,14 +68,9 @@ A Python application to use Philips Hue bridge/lights for wiggling and jiggling
 
 ## Credits
 
-- [Icon][1] by [Chanut is Industries][2]
-
 - [Rainbow image][3] from [https://wallpapers.gg/][4]
-
 - [YouTube][5] videos
 
-[1]: https://www.iconfinder.com/icons/7149745/dancing_dancer_party_lifestyle_happiness_entertainment_recreation_icon
-[2]: https://www.iconfinder.com/Chanut-is
 [3]: https://wallpapers.gg/digital-rainbow-background-6k/
 [4]: https://wallpapers.gg/
 [5]: https://www.youtube.com/
